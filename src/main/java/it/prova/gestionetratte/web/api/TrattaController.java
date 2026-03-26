@@ -96,4 +96,9 @@ public class TrattaController {
         }
         return airbus;
     }
+
+    @GetMapping("/concludiTratte")
+    public List<TrattaDTO> concludiTratteOnDemand(){
+        return TrattaDTO.createTrattaDTOListFromModelList(trattaService.concludiTratte(),true);
+    }
 }

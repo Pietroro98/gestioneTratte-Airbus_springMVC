@@ -1,5 +1,6 @@
 package it.prova.gestionetratte.repository.tratta;
 
+import it.prova.gestionetratte.model.StatoTratta;
 import it.prova.gestionetratte.model.Tratta;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -15,4 +16,6 @@ public interface TrattaRepository extends JpaRepository<Tratta, Long> {
 
     @Query("select count(t) from Tratta t where t.airbus.id_airbus = ?1")
     long countByAirbus_Id_airbus(Long airbusId);
+
+    List<Tratta> findByStato(StatoTratta stato);
 }

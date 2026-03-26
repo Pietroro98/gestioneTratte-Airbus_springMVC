@@ -8,6 +8,9 @@ import it.prova.gestionetratte.web.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -72,5 +75,23 @@ public class TrattaServiceImpl implements TrattaService
         } else {
             throw new NotAllowedException("Impossibile rimuovere la tratta con id " + idToRemove + " se non e' ANNULLATA");
         }
+    }
+
+    @Override
+    @Transactional
+    public List<Tratta> concludiTratte() {
+        LocalDateTime now = LocalDateTime.now();
+        List<Tratta> tratteAttive = trattaRepository.findByStato(StatoTratta.ATTIVA);
+        List<Tratta> tratteConcluse = new ArrayList<>();
+
+        for (Tratta trattaItem : tratteAttive) {
+            LocalDateTime arrivoPrevisto = LocalDateTime.of(trattaItem.getData(), trattaItem.getOraAtterraggio());
+            if (now.isAfter(arrivoPrevisto)) {
+                trattaItem.setStato(StatoTratta.CONCLUSA);
+                tratteConcluse.add(trattaItem);
+            }
+        }
+
+        return trattaRepository.saveAll(tratteConcluse);
     }
 }

@@ -17,4 +17,6 @@ public interface TrattaService
     List<Tratta> inserisciNuovi(List<Tratta> tratteInstances);
 
     void rimuovi(Long idToRemove);
+
+    List<Tratta> concludiTratte();
 }
