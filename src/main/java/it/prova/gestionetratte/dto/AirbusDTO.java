@@ -29,7 +29,7 @@ public class AirbusDTO {
 
     @NotNull(message = "{airbus.numeroPasseggeri.notnull}")
     @Min(value = 1, message = "{airbus.numeroPasseggeri.min}")
-    @Max(value = 850, message = "{airbus.numeroPasseggeri.max}")
+    @Max(value = 868, message = "{airbus.numeroPasseggeri.max}")
     private Integer numeroPasseggeri;
 
     private Boolean conSovrapposizioni;

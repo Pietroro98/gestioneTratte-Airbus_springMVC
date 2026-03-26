@@ -15,7 +15,7 @@ public class Airbus {
     @Column(name = "id_airbus")
     private Long id_airbus;
 
-    @Column(name = "codice", nullable = false)
+    @Column(name = "codice", nullable = false, unique = true)
     private String codice;
 
     @Column(name = "descrizione", nullable = false)
