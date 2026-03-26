@@ -109,9 +109,10 @@ public class TrattaController {
     @GetMapping("/concludiTratte")
     public ConcludiTratteResponseDTO concludiTratteOnDemand(){
         List<TrattaDTO> tratteConcluse = TrattaDTO.createTrattaDTOListFromModelList(trattaService.concludiTratte(), true);
-        if (tratteConcluse.isEmpty()) {
+        if (tratteConcluse.isEmpty())
+        {
             return new ConcludiTratteResponseDTO(Collections.emptyList(), "Nessuna tratta puo' essere conclusa");
         }
-        return new ConcludiTratteResponseDTO(tratteConcluse, null);
+        return new ConcludiTratteResponseDTO(tratteConcluse, tratteConcluse.size() + " tratta/e conclusa/e correttamente");
     }
 }
