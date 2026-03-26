@@ -11,7 +11,7 @@ public interface TrattaRepository extends JpaRepository<Tratta, Long> {
     @Query("select t from Tratta t join fetch t.airbus")
     List<Tratta> findAllEager();
 
-    @Query("select t from Tratta t join fetch t.airbus where t.id = ?1")
+    @Query("select t from Tratta t join fetch t.airbus where t.id_tratta = ?1")
     Tratta findSingleTrattaEager(Long id);
 
     @Query("select count(t) from Tratta t where t.airbus.id_airbus = ?1")

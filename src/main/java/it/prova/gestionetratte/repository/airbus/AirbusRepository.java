@@ -8,10 +8,6 @@ import java.util.List;
 
 public interface AirbusRepository extends JpaRepository <Airbus, Long>
 {
-    boolean existsByCodice(String codice);
-
-    @Query("select count(a) > 0 from Airbus a where a.codice = ?1 and a.id_airbus <> ?2")
-    boolean existsByCodiceAndIdNot(String codice, Long id);
 
     @Query("select distinct a from Airbus a left join fetch a.tratte")
     List<Airbus> findAllEager();
