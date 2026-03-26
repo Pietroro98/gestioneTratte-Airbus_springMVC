@@ -11,8 +11,8 @@ public class Tratta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+    @Column(name = "id_tratta")
+    private Long id_tratta;
 
     @Column(name = "codice", nullable = false)
     private String codice;
@@ -39,8 +39,8 @@ public class Tratta {
 
     public Tratta() {}
 
-    public Tratta(Long id, String codice, String descrizione, LocalDate data, LocalTime oraDecollo, LocalTime oraAtterraggio, StatoTratta stato) {
-        this.id = id;
+    public Tratta(Long id_tratta, String codice, String descrizione, LocalDate data, LocalTime oraDecollo, LocalTime oraAtterraggio, StatoTratta stato) {
+        this.id_tratta = id_tratta;
         this.codice = codice;
         this.descrizione = descrizione;
         this.data = data;
@@ -50,11 +50,11 @@ public class Tratta {
     }
 
     public Long getId() {
-        return id;
+        return id_tratta;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long id_tratta) {
+        this.id_tratta = id_tratta;
     }
 
     public String getCodice() {

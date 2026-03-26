@@ -65,4 +65,9 @@ public class AirbusServiceImpl implements AirbusService {
         airbusRepository.deleteById(idToRemove);
 
     }
+
+    @Override
+    public List<Airbus> listAllConSovrapposizioni() {
+        return airbusRepository.findAllConSovrapposizioni();
+    }
 }

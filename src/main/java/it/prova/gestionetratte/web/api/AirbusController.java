@@ -62,4 +62,17 @@ public class AirbusController {
         airbusService.rimuovi(id);
         return new MessageDTO("Airbus con id " + id + " eliminato correttamente");
     }
+
+
+    /**
+     * Invocando questo endpoint il sistema carica tutte le tratte create che presentino eventuali sovrapposizioni di orario,
+     * magari a causa di inserimento erroneo sulla base dati.
+     * Restituisce una lista con tutti gli airbus e aggiunge in busta
+     * un boolean --> ‘conSovrapposizioni’: true.
+     * @return
+     */
+    @GetMapping("/listaAirbusConSovrapposizioni")
+    public List<AirbusDTO> getListaAirbusConSovrapposizioni() {
+        return AirbusDTO.createAirbusDTOConSovrapposizioniListFromModelList(airbusService.listAllConSovrapposizioni());
+    }
 }

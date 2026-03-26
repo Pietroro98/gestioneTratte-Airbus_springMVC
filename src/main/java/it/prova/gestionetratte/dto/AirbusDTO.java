@@ -117,7 +117,7 @@ public class AirbusDTO {
         AirbusDTO result = new AirbusDTO(model.getId_airbus(), model.getCodice(), model.getDescrizione(),
                 model.getDataInizioServizio(), model.getNumeroPasseggeri());
 
-        return result ;
+        return result;
     }
 
     public static AirbusDTO buildAirbusDTOConSovrapposizioni(Airbus model) {
@@ -127,5 +127,9 @@ public class AirbusDTO {
 
     public static List<AirbusDTO> createAirbusDTOListFromModelList(List<Airbus> modelList, boolean includeTratte) {
         return modelList.stream().map(element -> buildAirbusDTOFromModel(element, includeTratte)).collect(Collectors.toList());
+    }
+
+    public static List<AirbusDTO> createAirbusDTOConSovrapposizioniListFromModelList(List<Airbus> modelList) {
+        return modelList.stream().map(AirbusDTO::buildAirbusDTOConSovrapposizioni).collect(Collectors.toList());
     }
 }

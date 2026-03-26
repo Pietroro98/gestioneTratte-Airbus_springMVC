@@ -16,4 +16,6 @@ public interface AirbusService {
     Airbus inserisciNuovo(Airbus airbusInstance);
 
     void rimuovi(Long idToRemove);
+
+    List<Airbus> listAllConSovrapposizioni();
 }
