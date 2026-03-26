@@ -54,6 +54,15 @@ public class TrattaServiceImpl implements TrattaService
     }
 
     @Override
+    @Transactional
+    public List<Tratta> inserisciNuovi(List<Tratta> tratteInstances) {
+        for (Tratta trattaInstance : tratteInstances) {
+            utilsClass.validateOrarioTrattaIsAfter(trattaInstance);
+        }
+        return trattaRepository.saveAll(tratteInstances);
+    }
+
+    @Override
     public void rimuovi(Long idToRemove) {
         Tratta tratta = trattaRepository.findById(idToRemove)
                 .orElseThrow(() -> new NotFoundException("Tratta not found con id: " + idToRemove));

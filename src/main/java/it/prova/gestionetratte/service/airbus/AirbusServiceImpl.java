@@ -57,7 +57,7 @@ public class AirbusServiceImpl implements AirbusService {
         airbusRepository.findById(idToRemove)
                 .orElseThrow(() -> new NotFoundException("Airbus con id: " + idToRemove + " non trovato. Impossibile rimuoverlo."));
 
-        if (trattaRepository.countByAirbusId(idToRemove) > 0) {
+        if (trattaRepository.countByAirbus_Id_airbus(idToRemove) > 0) {
             throw new AirbusHasAssociatedTratteException(
                     "Impossibile rimuovere l'airbus con id: " + idToRemove + " perchè ha tratte associate");
         }

@@ -11,6 +11,6 @@ public interface AirbusRepository extends JpaRepository <Airbus, Long>
     @Query("select distinct a from Airbus a left join fetch a.tratte")
     List<Airbus> findAllEager();
 
-    @Query("select distinct a from Airbus a left join fetch a.tratte where a.id = ?1")
+    @Query("select distinct a from Airbus a left join fetch a.tratte where a.id_airbus = ?1")
     Airbus findSingleAirbusEager(Long id);
 }

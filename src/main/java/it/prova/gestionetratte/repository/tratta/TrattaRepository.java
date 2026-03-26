@@ -13,5 +13,6 @@ public interface TrattaRepository extends JpaRepository<Tratta, Long> {
     @Query("select t from Tratta t join fetch t.airbus where t.id = ?1")
     Tratta findSingleTrattaEager(Long id);
 
-    long countByAirbusId(Long airbusId);
+    @Query("select count(t) from Tratta t where t.airbus.id_airbus = ?1")
+    long countByAirbus_Id_airbus(Long airbusId);
 }

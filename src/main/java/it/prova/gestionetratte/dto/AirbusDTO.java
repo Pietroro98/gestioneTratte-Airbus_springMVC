@@ -125,7 +125,7 @@ public class AirbusDTO {
                 model.getNumeroPasseggeri(), true);
     }
 
-    public static List<AirbusDTO> buildAirbusDTOListFromModelList(Set<Airbus> modelList, boolean includeTratte) {
+    public static List<AirbusDTO> createAirbusDTOListFromModelList(List<Airbus> modelList, boolean includeTratte) {
         return modelList.stream().map(element -> buildAirbusDTOFromModel(element, includeTratte)).collect(Collectors.toList());
     }
 }
