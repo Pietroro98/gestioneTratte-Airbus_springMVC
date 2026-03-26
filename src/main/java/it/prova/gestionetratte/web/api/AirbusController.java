@@ -1,5 +1,6 @@
 package it.prova.gestionetratte.web.api;
 import it.prova.gestionetratte.dto.AirbusDTO;
+import it.prova.gestionetratte.dto.MessageDTO;
 import it.prova.gestionetratte.model.Airbus;
 import it.prova.gestionetratte.service.airbus.AirbusService;
 import it.prova.gestionetratte.web.exception.BadRequestException;
@@ -57,7 +58,8 @@ public class AirbusController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable(required = true) Long id) {
+    public MessageDTO delete(@PathVariable(required = true) Long id) {
         airbusService.rimuovi(id);
+        return new MessageDTO("Airbus con id " + id + " eliminato correttamente");
     }
 }
