@@ -18,18 +18,18 @@ public class AirbusDTO {
 
     private Long id_airbus;
 
-    @NotBlank(message = "{airbus.codice.notblank}")
+    @NotBlank(message = "Il campo Codice deve essere valorizzato")
     private String codice;
 
-    @NotBlank(message = "{airbus.descrizione.notblank}")
+    @NotBlank(message = "Il campo Descrizione deve essere valorizzato")
     private String descrizione;
 
-    @NotNull(message = "{airbus.dataInizioServizio.notnull}")
+    @NotNull(message = "Il campo Data Inizio Servizio deve essere valorizzato")
     private LocalDate dataInizioServizio;
 
-    @NotNull(message = "{airbus.numeroPasseggeri.notnull}")
-    @Min(value = 1, message = "{airbus.numeroPasseggeri.min}")
-    @Max(value = 868, message = "{airbus.numeroPasseggeri.max}")
+    @NotNull(message = "Il campo Numero Passeggeri deve essere valorizzato")
+    @Min(value = 1, message = "Il campo Numero Passeggeri deve essere maggiore di zero")
+    @Max(value = 868, message = "Il campo Numero Passeggeri deve essere massimo di 868 persone")
     private Integer numeroPasseggeri;
 
     private Boolean conSovrapposizioni;

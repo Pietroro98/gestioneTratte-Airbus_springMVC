@@ -18,25 +18,25 @@ public class TrattaDTO {
 
     private Long id;
 
-    @NotBlank(message = "{tratta.codice.notblank}")
+    @NotBlank(message = "Il campo Codice deve essere valorizzato")
     private String codice;
 
-    @NotBlank(message = "{tratta.descrizione.notblank}")
+    @NotBlank(message = "Il campo Descrizione deve essere valorizzato")
     private String descrizione;
 
-    @NotNull(message = "{tratta.data.notnull}")
+    @NotNull(message = "Il campo Data deve essere valorizzato")
     private LocalDate data;
 
-    @NotNull(message = "{tratta.oraDecollo.notnull}")
+    @NotNull(message = "Il campo Ora Decollo deve essere valorizzato")
     private LocalTime oraDecollo;
 
-    @NotNull(message = "{tratta.oraAtterraggio.notnull}")
+    @NotNull(message = "Il campo Ora Atterraggio deve essere valorizzato")
     private LocalTime oraAtterraggio;
 
     private StatoTratta stato;
 
     @JsonIgnoreProperties(value = { "tratte" })
-    @NotNull(message = "{tratta.airbus.notnull}")
+    @NotNull(message = "Il campo Airbus deve essere valorizzato")
     private AirbusDTO airbus;
 
     public TrattaDTO() {
