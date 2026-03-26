@@ -43,12 +43,14 @@ public class AirbusServiceImpl implements AirbusService {
     @Override
     @Transactional
     public Airbus aggiorna(Airbus airbusInstance) {
+        validateCodiceUnivocoInAggiornamento(airbusInstance);
         return airbusRepository.save(airbusInstance);
     }
 
     @Override
     @Transactional
     public Airbus inserisciNuovo(Airbus airbusInstance) {
+        validateCodiceUnivocoInInserimento(airbusInstance);
         return airbusRepository.save(airbusInstance);
     }
 
@@ -69,5 +71,25 @@ public class AirbusServiceImpl implements AirbusService {
     @Override
     public List<Airbus> listAllConSovrapposizioni() {
         return airbusRepository.findAllConSovrapposizioni();
+    }
+
+    private void validateCodiceUnivocoInInserimento(Airbus airbusInstance) {
+        if (airbusInstance != null && hasText(airbusInstance.getCodice())
+                && airbusRepository.existsByCodice(airbusInstance.getCodice())) {
+            throw new it.prova.gestionetratte.web.exception.BadRequestException(
+                    "Esiste gia' un Airbus con codice '" + airbusInstance.getCodice() + "'");
+        }
+    }
+
+    private void validateCodiceUnivocoInAggiornamento(Airbus airbusInstance) {
+        if (airbusInstance != null && airbusInstance.getId_airbus() != null && hasText(airbusInstance.getCodice())
+                && airbusRepository.existsByCodiceAndIdNot(airbusInstance.getCodice(), airbusInstance.getId_airbus())) {
+            throw new it.prova.gestionetratte.web.exception.BadRequestException(
+                    "Esiste gia' un Airbus con codice '" + airbusInstance.getCodice() + "'");
+        }
+    }
+
+    private boolean hasText(String value) {
+        return value != null && !value.trim().isEmpty();
     }
 }
