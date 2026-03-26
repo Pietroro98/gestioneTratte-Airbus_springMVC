@@ -1,4 +1,5 @@
 package it.prova.gestionetratte.web.api;
+import it.prova.gestionetratte.dto.ConcludiTratteResponseDTO;
 import it.prova.gestionetratte.dto.MessageDTO;
 import it.prova.gestionetratte.dto.TrattaDTO;
 import it.prova.gestionetratte.model.Airbus;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -97,8 +99,19 @@ public class TrattaController {
         return airbus;
     }
 
+    /**
+     * Endpoint per concludere le tratte che possono essere concluse,
+     * ovvero quelle che hanno data e ora di atterraggio passate e non sono ancora concluse o annullate.
+     * Se non ci sono tratte che possono essere concluse, restituisce la lista di tratte vuote e un messaggio informativo.
+     * (gestito con concludiTratteDTO)
+     * @return
+     */
     @GetMapping("/concludiTratte")
-    public List<TrattaDTO> concludiTratteOnDemand(){
-        return TrattaDTO.createTrattaDTOListFromModelList(trattaService.concludiTratte(),true);
+    public ConcludiTratteResponseDTO concludiTratteOnDemand(){
+        List<TrattaDTO> tratteConcluse = TrattaDTO.createTrattaDTOListFromModelList(trattaService.concludiTratte(), true);
+        if (tratteConcluse.isEmpty()) {
+            return new ConcludiTratteResponseDTO(Collections.emptyList(), "Nessuna tratta puo' essere conclusa");
+        }
+        return new ConcludiTratteResponseDTO(tratteConcluse, null);
     }
 }
